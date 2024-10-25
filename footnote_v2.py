@@ -107,6 +107,11 @@ def create_popup_footnotes(html_content):
         # Update the progress bar
         pbar.update(1)
         processed_notes += 1
+
+    # Remove all <p> elements with class "note"
+    for note in soup.find_all('p', class_='note'):
+        note.decompose()
+
     # Close the progress bar
     pbar.close()
     print(f"Processed {processed_notes} footnotes.")
